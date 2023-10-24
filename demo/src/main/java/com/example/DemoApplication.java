@@ -40,7 +40,8 @@ public class DemoApplication implements CommandLineRunner {
 //		}
 //		dao.deleteById(201);
 //		dao.findAll().forEach(System.out::println);
-		dao.findTop5ByFirstNameStartingWithOrderByLastNameDesc("P").forEach(System.out::println);
+//		dao.findTop5ByFirstNameStartingWithOrderByLastNameDesc("P").forEach(System.out::println);
+		dao.findByActorIdGreaterThanEqual(200).forEach(System.out::println);
 	}
 
 }
