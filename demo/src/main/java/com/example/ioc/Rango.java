@@ -20,6 +20,11 @@ public class Rango {
 	}
 	public void setMax(int max) {
 		this.max = max;
+	}
+	
+	@Override
+	public String toString() {
+		return "Rango [min=" + min + ", max=" + max + "]";
 	}    
     
 }

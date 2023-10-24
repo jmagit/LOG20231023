@@ -22,7 +22,10 @@ public class Ejemplos {
 	
 	@Value("${mi.valor:(sin valor)}")
 	String config;
-	
+
+	@Autowired
+	private Rango rango;
+
 	public Ejemplos(@Qualifier("new") Dependencia dep) {
 		this.dep = dep;
 	}
@@ -45,5 +48,6 @@ public class Ejemplos {
 			System.out.println("No hay tonteria");
 		}
 		System.out.println("Valor: " + config);
+		System.out.println(rango);
 	}
 }
