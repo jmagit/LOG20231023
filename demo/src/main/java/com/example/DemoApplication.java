@@ -14,13 +14,13 @@ public class DemoApplication implements CommandLineRunner {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
-	@Autowired
-	Ejemplos ejemplos;
+//	@Autowired
+//	Ejemplos ejemplos;
 	
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("Aplicacion arrancada");
-		ejemplos.run();
+//		ejemplos.run();
 	}
 
 }

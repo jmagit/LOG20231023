@@ -1,5 +1,6 @@
 package com.example.ioc;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -40,12 +41,12 @@ public class Configuracion {
 	
 	@Bean
 	@Profile("test")
-	Tonteria dameTonteriaGrande() {
+	Tonteria dameTonteriaGrande(@Qualifier("new") Dependencia dep) {
 		return new Tonteria() {
 			
 			@Override
 			public void dime() {
-				System.out.println("Soy una tonteria grande");
+				System.out.println("Soy una tonteria grande - " + dep.dime());
 			}
 		};
 	}
