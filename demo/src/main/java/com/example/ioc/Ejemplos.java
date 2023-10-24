@@ -2,6 +2,7 @@ package com.example.ioc;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import jakarta.annotation.PostConstruct;
@@ -18,6 +19,9 @@ public class Ejemplos {
 	
 	@Autowired(required = false)
 	Tonteria tonteria;
+	
+	@Value("${mi.valor:(sin valor)}")
+	String config;
 	
 	public Ejemplos(@Qualifier("new") Dependencia dep) {
 		this.dep = dep;
@@ -40,5 +44,6 @@ public class Ejemplos {
 		else {
 			System.out.println("No hay tonteria");
 		}
+		System.out.println("Valor: " + config);
 	}
 }
