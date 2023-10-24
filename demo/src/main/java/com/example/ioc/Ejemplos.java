@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import jakarta.annotation.PostConstruct;
+
 @Component
 public class Ejemplos {
 	private Dependencia dep;
@@ -18,6 +20,11 @@ public class Ejemplos {
 		this.dep = dep;
 	}
 
+	@PostConstruct
+	void init() {
+		dameDB.save();
+	
+	}
 
 	public void run() {
 		System.out.println("Soy el ejemplo");

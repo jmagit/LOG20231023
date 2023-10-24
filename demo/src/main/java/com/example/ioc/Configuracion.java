@@ -9,9 +9,20 @@ public class Configuracion {
 	Servicio dameDB() {
 		return new ServicioDB();
 	}
+
 	@Bean
 	Servicio dameProxy() {
 		return new ServicioProxy();
+	}
+
+	@Bean
+	int version() {
+		return 2;
+	}
+
+	@Bean
+	String autor() {
+		return "Yo mismo";
 	}
 
 }
