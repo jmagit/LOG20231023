@@ -20,16 +20,17 @@ public class Ejemplos {
 		this.dep = dep;
 	}
 
-	@PostConstruct
-	void init() {
-		dameDB.save();
-	
-	}
+//	@PostConstruct
+//	void init() {
+//		dameDB.save();
+//	
+//	}
 
 	public void run() {
 		System.out.println("Soy el ejemplo");
 		System.out.println(dep.dime());
 		dameProxy.save();
 		dameDB.save();
+		System.out.println(dep.dime());
 	}
 }

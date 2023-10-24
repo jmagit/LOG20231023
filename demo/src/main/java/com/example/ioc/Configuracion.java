@@ -17,7 +17,7 @@ public class Configuracion {
 
 	@Bean
 	int version() {
-		return 2;
+		return 1;
 	}
 
 	@Bean

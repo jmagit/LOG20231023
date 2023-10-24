@@ -3,9 +3,11 @@ package com.example.ioc;
 import java.beans.ConstructorProperties;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
+@Scope("prototype")
 public class Compartida {
 	private int version;
 	private String autor;
