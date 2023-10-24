@@ -16,7 +16,7 @@ public class Ejemplos {
 	@Autowired
 	Servicio dameDB;
 	
-	@Autowired
+	@Autowired(required = false)
 	Tonteria tonteria;
 	
 	public Ejemplos(@Qualifier("new") Dependencia dep) {
@@ -35,6 +35,10 @@ public class Ejemplos {
 		dameProxy.save();
 		dameDB.save();
 		System.out.println(dep.dime());
-		tonteria.dime();
+		if(tonteria != null)
+			tonteria.dime();
+		else {
+			System.out.println("No hay tonteria");
+		}
 	}
 }
