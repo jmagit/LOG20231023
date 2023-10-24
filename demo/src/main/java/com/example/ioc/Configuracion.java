@@ -24,5 +24,16 @@ public class Configuracion {
 	String autor() {
 		return "Yo mismo";
 	}
+	
+	@Bean
+	Tonteria dameTonteria() {
+		return new Tonteria() {
+			
+			@Override
+			public void dime() {
+				System.out.println("Soy una tonteria");
+			}
+		};
+	}
 
 }
