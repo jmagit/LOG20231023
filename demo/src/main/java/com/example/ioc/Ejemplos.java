@@ -16,6 +16,9 @@ public class Ejemplos {
 	@Autowired
 	Servicio dameDB;
 	
+	@Autowired
+	Tonteria tonteria;
+	
 	public Ejemplos(@Qualifier("new") Dependencia dep) {
 		this.dep = dep;
 	}
@@ -32,5 +35,6 @@ public class Ejemplos {
 		dameProxy.save();
 		dameDB.save();
 		System.out.println(dep.dime());
+		tonteria.dime();
 	}
 }
