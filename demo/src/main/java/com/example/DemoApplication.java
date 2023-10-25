@@ -9,6 +9,8 @@ import org.springframework.data.domain.Sort;
 
 import com.example.domains.contracts.repositories.ActorRepository;
 import com.example.domains.entities.Actor;
+import com.example.domains.entities.dtos.ActorDTO;
+import com.example.domains.entities.dtos.ActorShort;
 import com.example.ioc.Ejemplos;
 
 import jakarta.transaction.Transactional;
@@ -66,7 +68,15 @@ public class DemoApplication implements CommandLineRunner {
 //			System.err.println(a.getErrorsMessage());
 //		else
 //			dao.save(a);
-
+		dao.findByActorIdGreaterThanEqual(200).forEach(System.out::println);
+//		dao.findByActorIdGreaterThanEqual(200)
+//			.forEach(f->System.out.println(ActorDTO.from(f)));
+//		dao.readByActorIdGreaterThanEqual(200).forEach(System.out::println);
+//		dao.queryByActorIdGreaterThanEqual(200)
+//			.forEach(f->System.out.println(f.getId() + " " + f.getNombre()));
+		dao.findByActorIdGreaterThanEqual(200, ActorDTO.class).forEach(System.out::println);
+		dao.findByActorIdGreaterThanEqual(200, ActorShort.class)
+			.forEach(f->System.out.println(f.getId() + " " + f.getNombre()));
 	}
 
 	@Transactional
