@@ -8,9 +8,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
 import com.example.domains.contracts.repositories.ActorRepository;
+import com.example.domains.contracts.services.ActorService;
 import com.example.domains.entities.Actor;
 import com.example.domains.entities.dtos.ActorDTO;
 import com.example.domains.entities.dtos.ActorShort;
+import com.example.exceptions.DuplicateKeyException;
+import com.example.exceptions.InvalidDataException;
+import com.example.exceptions.NotFoundException;
 import com.example.ioc.Ejemplos;
 
 import jakarta.transaction.Transactional;
@@ -33,8 +37,11 @@ public class DemoApplication implements CommandLineRunner {
 		ejemplosData();
 	}
 	
+//	@Autowired
+//	ActorRepository dao;
+	
 	@Autowired
-	ActorRepository dao;
+	ActorService srv;
 	
 	void ejemplosData() {
 //		var a = new Actor(0, "Pepito", "Grillo");
@@ -68,15 +75,28 @@ public class DemoApplication implements CommandLineRunner {
 //			System.err.println(a.getErrorsMessage());
 //		else
 //			dao.save(a);
-		dao.findByActorIdGreaterThanEqual(200).forEach(System.out::println);
-//		dao.findByActorIdGreaterThanEqual(200)
-//			.forEach(f->System.out.println(ActorDTO.from(f)));
-//		dao.readByActorIdGreaterThanEqual(200).forEach(System.out::println);
-//		dao.queryByActorIdGreaterThanEqual(200)
+//		dao.findByActorIdGreaterThanEqual(200).forEach(System.out::println);
+////		dao.findByActorIdGreaterThanEqual(200)
+////			.forEach(f->System.out.println(ActorDTO.from(f)));
+////		dao.readByActorIdGreaterThanEqual(200).forEach(System.out::println);
+////		dao.queryByActorIdGreaterThanEqual(200)
+////			.forEach(f->System.out.println(f.getId() + " " + f.getNombre()));
+//		dao.findByActorIdGreaterThanEqual(200, ActorDTO.class).forEach(System.out::println);
+//		dao.findByActorIdGreaterThanEqual(200, ActorShort.class)
 //			.forEach(f->System.out.println(f.getId() + " " + f.getNombre()));
-		dao.findByActorIdGreaterThanEqual(200, ActorDTO.class).forEach(System.out::println);
-		dao.findByActorIdGreaterThanEqual(200, ActorShort.class)
+		
+		srv.getByProjection(ActorShort.class)
 			.forEach(f->System.out.println(f.getId() + " " + f.getNombre()));
+		try {
+			srv.modify(new Actor(11110, "PPPPPP", "4g"));
+			srv.add(new Actor(0, null, "4g"));
+		} catch (DuplicateKeyException | InvalidDataException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Transactional
