@@ -11,6 +11,8 @@ import com.example.domains.contracts.repositories.ActorRepository;
 import com.example.domains.entities.Actor;
 import com.example.ioc.Ejemplos;
 
+import jakarta.transaction.Transactional;
+
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner {
 
@@ -22,6 +24,7 @@ public class DemoApplication implements CommandLineRunner {
 //	Ejemplos ejemplos;
 	
 	@Override
+	@Transactional
 	public void run(String... args) throws Exception {
 		System.out.println("Aplicacion arrancada");
 //		ejemplos.run();
@@ -51,7 +54,17 @@ public class DemoApplication implements CommandLineRunner {
 //			.forEach(System.out::println);
 //		dao.findAll((root, query, builder) -> builder.lessThan(root.get("actorId"), 10))
 //		.forEach(System.out::println);
-		dao.findAll(PageRequest.of(1, 10, Sort.by("firstName","lastName"))).forEach(System.out::println);
+//		dao.findAll(PageRequest.of(1, 10, Sort.by("firstName","lastName"))).forEach(System.out::println);
+		var item = dao.findById(1);
+		if(item.isPresent()) {
+			var a = item.get();
+			System.out.println(a);
+			a.getFilmActors().forEach(f->System.out.println(f.getFilm().getTitle()));
+		}
 	}
 
+	@Transactional
+	void operacion() {
+		
+	}
 }
