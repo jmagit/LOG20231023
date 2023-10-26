@@ -12,7 +12,7 @@ public class ActorDTO {
 	@JsonProperty("id")
 	private int actorId;
 	@JsonProperty("nombre")
-	@Size(max = 2)
+//	@Size(max = 2)
 	private String firstName;
 	@JsonProperty("apellidos")
 	private String lastName;
