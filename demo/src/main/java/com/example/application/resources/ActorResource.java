@@ -64,13 +64,17 @@ public class ActorResource {
 		return item.get().toString();
 	}
 
+	record Peli(int id, String titulo) {}
+	
 	@Transactional
 	@GetMapping(path = "/{id}/pelis")
-	public List<FilmActor> getPelis(@PathVariable int id) throws NotFoundException {
+	public List<Peli> getPelis(@PathVariable int id) throws NotFoundException {
 		var item = srv.getOne(id);
 		if(item.isEmpty())
 			throw new NotFoundException();
-		return item.get().getFilmActors();
+		return item.get().getFilmActors().stream()
+					.map(p->new Peli(p.getFilm().getFilmId(), p.getFilm().getTitle()))
+					.toList();
 	}
 
 
