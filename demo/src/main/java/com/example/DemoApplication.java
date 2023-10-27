@@ -17,9 +17,12 @@ import com.example.exceptions.InvalidDataException;
 import com.example.exceptions.NotFoundException;
 import com.example.ioc.Ejemplos;
 
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import jakarta.transaction.Transactional;
 
 @SpringBootApplication
+@SecurityScheme(name = "bearerAuth", type = SecuritySchemeType.HTTP, scheme = "bearer", bearerFormat = "JWT")
 public class DemoApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {

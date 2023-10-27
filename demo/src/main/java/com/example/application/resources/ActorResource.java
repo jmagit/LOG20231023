@@ -28,6 +28,7 @@ import com.example.exceptions.DuplicateKeyException;
 import com.example.exceptions.InvalidDataException;
 import com.example.exceptions.NotFoundException;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
@@ -67,6 +68,7 @@ public class ActorResource {
 	record Peli(int id, String titulo) {}
 	
 	@Transactional
+	@SecurityRequirement(name = "bearerAuth")
 	@GetMapping(path = "/{id}/pelis")
 	public List<Peli> getPelis(@PathVariable int id) throws NotFoundException {
 		var item = srv.getOne(id);
